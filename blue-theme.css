@@ -1,0 +1,210 @@
+/*
+ * Blue course theme for Reveal.js 5. Load after reset.css and reveal.css.
+ * Adapted from kpassoubady/marp-themes/blue-theme.css.
+ * Recommended canvas: 1280 x 720, margin: 0, center: false.
+ */
+@font-face {
+  font-family: "Manrope";
+  src: url("assets/fonts/Manrope.ttf") format("truetype");
+  font-weight: 200 800;
+  font-display: swap;
+}
+@font-face {
+  font-family: "Space Grotesk";
+  src: url("assets/fonts/SpaceGrotesk.ttf") format("truetype");
+  font-weight: 300 700;
+  font-display: swap;
+}
+:root {
+  --color-primary: #1a73e8;
+  --color-primary-dark: #0d47a1;
+  --color-accent: #00bfa5;
+  --color-bg: #ffffff;
+  --color-bg-code: #f5f7fa;
+  --color-text: #1e293b;
+  --color-text-light: #52647b;
+  --color-border: #dce4ef;
+  --color-accent-ink: #007a6b;
+  --color-info: #145ab6;
+  --color-success: #256b2a;
+  --color-discussion: #7b1fa2;
+  --color-warning: #a63a00;
+  --color-danger: #b91c1c;
+  --r-background-color: var(--color-bg);
+  --r-main-font: "Manrope", sans-serif;
+  --r-main-font-size: 28px;
+  --r-main-color: var(--color-text);
+  --r-heading-font: "Manrope", sans-serif;
+  --r-heading-color: var(--color-primary-dark);
+  --r-heading-text-transform: none;
+  --r-link-color: var(--color-primary-dark);
+  --r-link-color-hover: var(--color-info);
+  --r-selection-background-color: #cce8ff;
+  --r-selection-color: var(--color-primary-dark);
+  --slide-padding: 52px 64px 58px;
+}
+.reveal-viewport { background: var(--r-background-color); }
+.reveal { font-family: var(--r-main-font); font-size: var(--r-main-font-size); color: var(--r-main-color); }
+.reveal .slides { text-align: left; }
+.reveal .slides section {
+  box-sizing: border-box;
+  height: var(--slide-height, 720px);
+  padding: var(--slide-padding);
+  line-height: 1.5;
+  background: var(--color-bg);
+}
+.reveal .slides section.stack { padding: 0; background: transparent; }
+.reveal h1, .reveal h2, .reveal h3, .reveal h4 {
+  font-family: var(--r-heading-font);
+  color: var(--r-heading-color);
+  font-weight: 700;
+  line-height: 1.15;
+  text-transform: none;
+  text-shadow: none;
+  margin: 0 0 24px;
+  overflow-wrap: break-word;
+}
+.reveal h1 { font-size: 2em; }
+.reveal h2 { font-size: 1.55em; }
+.reveal h3 { font-size: 1.05em; margin: 20px 0 12px; }
+.reveal section > :is(h1, h2):first-of-type { border-bottom: 3px solid var(--color-accent); padding-bottom: 18px; }
+.reveal p { margin: 0 0 18px; }
+.reveal ul, .reveal ol { display: block; margin: 0 0 22px; padding-left: 1.25em; }
+.reveal li { padding-left: 0.15em; margin-bottom: 12px; }
+.reveal li::marker { color: var(--color-primary); }
+.reveal li :is(ul, ol) { margin: 10px 0 0; }
+.reveal strong, .reveal b { color: var(--color-primary-dark); font-weight: 800; }
+.reveal a { color: var(--r-link-color); text-decoration: underline; text-underline-offset: 0.15em; }
+.reveal a:hover { color: var(--r-link-color-hover); }
+.reveal a:focus-visible, .reveal button:focus-visible {
+  outline: 3px solid var(--color-accent-ink);
+  outline-offset: 5px;
+}
+.reveal code { font-family: "JetBrains Mono", "Cascadia Code", Menlo, monospace; font-size: 0.85em; }
+.reveal :not(pre) > code { padding: 0.06em 0.25em; border: 1px solid var(--color-border); border-radius: 4px; background: var(--color-bg-code); color: var(--color-primary-dark); overflow-wrap: anywhere; }
+.reveal pre {
+  box-sizing: border-box;
+  width: 100%;
+  margin: 18px 0 24px;
+  padding: 20px 24px;
+  border: 1px solid var(--color-border);
+  border-radius: 8px;
+  background: var(--color-bg-code);
+  box-shadow: none;
+  font-size: 0.73em;
+  line-height: 1.5;
+}
+.reveal pre code { display: block; padding: 0; max-height: 420px; overflow: auto; font-size: inherit; color: var(--color-text); background: transparent; tab-size: 2; }
+.reveal table { width: 100%; border-collapse: collapse; margin: 18px 0; font-size: 0.82em; }
+.reveal table th { background: var(--color-primary-dark); color: white; font-weight: 700; }
+.reveal table :is(th, td) { padding: 12px 16px; border-bottom: 1px solid var(--color-border); text-align: left; vertical-align: top; }
+.reveal table tbody tr:nth-child(even) { background: var(--color-bg-code); }
+.reveal blockquote { box-sizing: border-box; width: 100%; margin: 24px 0; padding: 18px 24px; border-left: 5px solid var(--color-accent); border-radius: 0 8px 8px 0; background: #edf9f6; font-size: 0.9em; font-style: normal; box-shadow: none; }
+.reveal blockquote p:last-child { margin: 0; }
+.reveal :is(.small, small) { font-size: 0.75em; }
+.reveal .muted { color: var(--color-text-light); }
+.reveal .accent { color: var(--color-primary-dark); font-weight: 800; }
+.reveal :is(.eyebrow, .kicker) { display: block; font-size: 0.55em; font-weight: 800; letter-spacing: 0.14em; text-transform: uppercase; color: var(--color-accent-ink); margin-bottom: 24px; }
+.reveal :is(.columns2, .cols, .cols-60-40) { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 40px; align-items: start; }
+.reveal .cols-60-40 { grid-template-columns: minmax(0, 3fr) minmax(0, 2fr); }
+.reveal img, .reveal svg.diagram { max-width: 100%; max-height: 500px; height: auto; }
+.reveal svg.diagram { display: block; width: 100%; }
+.reveal figure { margin: 0; }
+.reveal img.logo { position: absolute; right: 64px; bottom: 60px; width: 160px; }
+.reveal img[alt~="center"] { display: block; margin: 0 auto; }
+.reveal img[alt~="small"] { width: 300px; }
+.reveal img[alt~="medium"] { width: 500px; }
+.reveal img[alt~="large"] { width: 700px; }
+.reveal :is(.capability-grid, .term-grid) { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 24px; margin: 28px 0; }
+.reveal .capability-grid.grid-2x2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.reveal :is(.capability-card, .term-card) { border: 1px solid var(--color-border); border-left: 4px solid var(--color-primary); border-radius: 8px; padding: 24px; background: var(--color-bg-code); }
+.reveal .term-card { text-align: center; border: 2px solid var(--color-primary); }
+.reveal :is(.capability-card, .term-card) .tag { display: block; margin-bottom: 12px; font-size: 0.6em; font-weight: 800; letter-spacing: 0.07em; text-transform: uppercase; color: var(--color-primary-dark); }
+.reveal :is(.capability-card, .term-card) p { font-size: 0.8em; margin: 0; }
+.reveal .capability-card.boundary { border-left-color: var(--color-warning); background: #fff3e0; }
+.reveal .capability-card.boundary .tag { color: var(--color-warning); }
+.reveal .gfm-alert { border-left: 5px solid var(--a-c); background: var(--a-bg); border-radius: 4px; padding: 16px 24px; margin: 20px 0; font-size: 0.85em; }
+.reveal .gfm-alert-title { color: var(--a-c); font-weight: 800; text-transform: uppercase; letter-spacing: 0.04em; font-size: 0.75em; margin-bottom: 8px; }
+.reveal .gfm-alert p:last-child { margin: 0; }
+.reveal .gfm-note { --a-c: var(--color-info); --a-bg: #e3f2fd; }
+.reveal .gfm-tip { --a-c: var(--color-success); --a-bg: #e8f5e9; }
+.reveal .gfm-important { --a-c: var(--color-discussion); --a-bg: #f3e5f5; }
+.reveal .gfm-warning { --a-c: var(--color-warning); --a-bg: #fff3e0; }
+.reveal .gfm-caution { --a-c: var(--color-danger); --a-bg: #fce4ec; }
+.reveal :is(.industry-badge, .skip-badge, .reference-badge) { display: inline-block; padding: 6px 14px; margin-bottom: 18px; border-left: 4px solid currentColor; border-radius: 0 4px 4px 0; font-size: 0.58em; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
+.reveal .industry-badge { color: var(--color-warning); background: #fff3e0; }
+.reveal .skip-badge { color: var(--color-danger); background: #fce4ec; }
+.reveal .reference-badge { color: var(--color-info); background: #e3f2fd; }
+/* Badges use words as well as color, matching the Marp activity vocabulary. */
+.reveal section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot) {
+  --activity-color: var(--color-accent-ink);
+  --activity-fill: #edf9f6;
+  border-left: 6px solid var(--activity-color);
+  padding-top: 94px;
+  background: linear-gradient(90deg, var(--activity-fill), var(--color-bg) 28%);
+}
+.reveal section:is(.demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot)::before {
+  content: var(--activity-label);
+  position: absolute; top: 36px; left: 64px;
+  padding: 5px 12px; border-radius: 4px;
+  background: var(--activity-color); color: white;
+  font-size: 15px; font-weight: 800; letter-spacing: 0.1em;
+}
+.reveal section.demo { --activity-label: "DEMO"; }
+.reveal section.discussion { --activity-label: "DISCUSSION"; --activity-color: var(--color-discussion); --activity-fill: #f3e5f5; }
+.reveal section.chat-check { --activity-label: "CHAT CHECK"; --activity-color: var(--color-info); --activity-fill: #e3f2fd; }
+.reveal section.chat-waterfall { --activity-label: "CHAT WATERFALL"; --activity-color: var(--color-warning); --activity-fill: #fff3e0; }
+.reveal section:is(.discussion-answer, .chat-check-answer, .chat-waterfall-answer) { --activity-label: "ANSWER"; --activity-color: var(--color-success); --activity-fill: #e8f5e9; }
+.reveal section.chat-waterfall-answer { --activity-label: "KEY POINTS"; }
+.reveal section.lab { --activity-label: "HANDS-ON LAB"; }
+.reveal section.kahoot { --activity-label: "KNOWLEDGE CHECK"; --activity-color: var(--color-info); --activity-fill: #e3f2fd; }
+/* Section-local colors also work in overview, vertical stacks, and PDF pages. */
+.reveal section:is(.lead, .divider, .title-slide) {
+  --r-heading-color: #fff;
+  --r-link-color: #96ffeb;
+  --r-link-color-hover: #fff;
+  --color-text: #fff;
+  --color-text-light: #deebff;
+  color: white;
+  background: linear-gradient(135deg, #1a73e8, #0d47a1);
+  text-align: center;
+  align-content: center;
+}
+.reveal section:is(.lead, .divider, .title-slide) :is(.eyebrow, .kicker) { color: #96ffeb; }
+.reveal section:is(.lead, .divider, .title-slide) :is(h1, h2) { color: white; }
+.reveal section:is(.lead, .divider, .title-slide) :is(strong, b, .accent) { color: inherit; }
+.reveal section:is(.lead, .divider, .title-slide) h1 { font-size: 2.65em; }
+.reveal section:is(.lead, .divider, .title-slide) h2 { font-size: 1.35em; font-weight: 400; }
+.reveal section:is(.lead, .divider, .title-slide) :is(ul, ol) { text-align: left; }
+.reveal section:is(.lead, .divider, .title-slide) li::marker { color: #96ffeb; }
+.reveal section:is(.lead, .divider, .title-slide) :not(pre) > code { background: #ffffff20; border-color: #ffffff60; color: white; }
+.reveal section:is(.lead, .divider, .title-slide) :is(pre, table, .gfm-alert, .capability-card, .term-card) {
+  --color-text: #1e293b;
+  --color-text-light: #52647b;
+  --r-heading-color: #0d47a1;
+  --r-link-color: #0d47a1;
+  --r-link-color-hover: #145ab6;
+  color: var(--color-text);
+}
+.reveal section:is(.lead, .divider, .title-slide) table { background: var(--color-bg); }
+.reveal section:is(.lead, .divider, .title-slide) blockquote { background: #ffffff18; }
+.reveal section:is(.lead, .divider, .title-slide) :is(header, footer) { display: none; }
+.reveal .t-main { font: 700 64px/1.12 var(--r-heading-font); margin: 24px 0; }
+.reveal .t-sub { font-size: 30px; color: #deebff; }
+.reveal .t-meta { margin-top: 48px; font-size: 20px; color: #deebff; }
+.reveal .t-band { height: 4px; width: 80px; margin: 0 auto 24px; background: var(--color-accent); }
+.reveal .slide-number, .reveal .slide-number-pdf { background: transparent; color: var(--color-text-light); font: 14px var(--r-main-font); left: 28px; right: auto; bottom: 20px; }
+.reveal .slide-number a { color: inherit; text-decoration: none; }
+.reveal .controls { color: var(--color-primary); }
+.reveal .progress { color: var(--color-accent-ink); height: 3px; }
+.reveal-viewport:has(.slides section.present:is(.lead, .divider, .title-slide)) { background: #0d47a1; }
+.reveal:has(.slides section.present:is(.lead, .divider, .title-slide)) :is(.slide-number, .controls) { color: #96ffeb; }
+html.reveal-print .reveal .slides section:not(.stack) { padding: var(--slide-padding) !important; }
+html.reveal-print .reveal .slides section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot) { padding-top: 94px !important; }
+html.reveal-print .reveal pre code { max-height: none; overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
+@media (prefers-reduced-motion: reduce) {
+  .reveal *, .reveal *::before, .reveal *::after { animation: none !important; transition: none !important; }
+}
+@media print {
+  .reveal .slides section { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+}

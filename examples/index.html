@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Blue / A Reveal.js course theme</title>
+  <link rel="stylesheet" href="../node_modules/reveal.js/dist/reset.css">
+  <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
+  <link rel="stylesheet" href="../blue-theme.css">
+  <link id="polished-theme" rel="stylesheet" href="../blue-polished.css">
+  <link id="gradient-theme" rel="stylesheet" href="../blue-polished-gradients.css" disabled>
+  <style>
+    .theme-picker { position: fixed; z-index: 30; top: 10px; right: 14px; display: flex; gap: 4px; padding: 4px; border: 1px solid #d7e3ee; border-radius: 8px; background: #fffffff2; font: 600 12px/1.4 "Manrope", sans-serif; }
+    .theme-picker a { padding: 6px 9px; border-radius: 5px; color: #0d47a1; text-decoration: none; }
+    .theme-picker a[aria-current="page"] { background: #0d47a1; color: #fff; }
+    .theme-picker a:focus-visible { outline: 3px solid #007a6b; outline-offset: 2px; }
+    html.reveal-print .theme-picker { display: none; }
+    @media print { .theme-picker { display: none; } }
+  </style>
+</head>
+<body>
+  <nav class="theme-picker" aria-label="Theme comparison">
+    <a href="?theme=classic" data-theme="classic">Classic</a>
+    <a href="?theme=polished" data-theme="polished">Polished</a>
+    <a href="?theme=polished-gradients" data-theme="polished-gradients">Polished + Gradients</a>
+  </nav>
+  <div class="reveal"><div class="slides">
+    <section class="lead">
+      <p class="eyebrow">Blue / An instructor's toolkit</p>
+      <h1>Good systems.<br>Great explanations.</h1>
+      <p>A familiar blue identity. A clearer teaching canvas.</p>
+      <p class="small muted">Reveal.js 5 &nbsp; / &nbsp; Kangeyan Passoubady</p>
+      <aside class="notes">Use the arrow keys or swipe to explore. Use the comparison links to switch among all three themes on the same slide.</aside>
+    </section>
+    <section>
+      <p class="eyebrow">01 / Built for understanding</p>
+      <h2>Make the important thing obvious</h2>
+      <p>Keep the explanation calm. Give the idea room to breathe.</p>
+      <div class="capability-grid">
+        <div class="capability-card"><span class="tag">Structure</span><h3>One clear idea</h3><p>A strong heading, a short explanation, and a visual that earns its place.</p></div>
+        <div class="capability-card"><span class="tag">Continuity</span><h3>Your blue identity</h3><p>The same blue, deep blue, and teal from your Marp course decks.</p></div>
+        <div class="capability-card boundary"><span class="tag">Restraint</span><h3>Not a dashboard</h3><p>Use cards when comparison helps. Use plain prose when it does not.</p></div>
+      </div>
+      <blockquote><p>Design supports the explanation. It should never compete with it.</p></blockquote>
+    </section>
+    <section class="divider">
+      <p class="eyebrow">02 / Continuous integration</p>
+      <h1>Small changes.<br>Fast feedback.</h1>
+      <p>From a local commit to a shared signal of confidence.</p>
+    </section>
+    <section>
+      <p class="eyebrow">A system, at a glance</p>
+      <h2>Every change gets a safety net</h2>
+      <svg class="diagram" viewBox="0 0 1100 240" role="img" aria-label="A commit triggers a build, automated tests, and review before merge">
+        <defs><marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto"><path d="M0 0 10 5 0 10Z" fill="#007a6b"/></marker></defs>
+        <g fill="#f1f6fa" stroke="#d7e3ee" stroke-width="2"><rect x="0" y="55" width="230" height="125" rx="12"/><rect x="290" y="55" width="230" height="125" rx="12"/><rect x="580" y="55" width="230" height="125" rx="12"/><rect x="870" y="55" width="230" height="125" rx="12"/></g>
+        <g stroke="#007a6b" stroke-width="3" marker-end="url(#arrow)"><path d="M240 117H278"/><path d="M530 117H568"/><path d="M820 117H858"/></g>
+        <g fill="#0d47a1" font-family="Manrope, sans-serif" font-size="27" font-weight="700" text-anchor="middle"><text x="115" y="112">Commit</text><text x="405" y="112">Build</text><text x="695" y="112">Test</text><text x="985" y="112">Review</text></g>
+        <g fill="#52647b" font-family="Manrope, sans-serif" font-size="18" text-anchor="middle"><text x="115" y="145">A small change</text><text x="405" y="145">A repeatable artifact</text><text x="695" y="145">Evidence, not hope</text><text x="985" y="145">A shared decision</text></g>
+      </svg>
+      <div class="columns2">
+        <div><h3>The fast path</h3><p>Run cheap, deterministic checks first. Return useful feedback while the change is still fresh.</p></div>
+        <div><h3>The human boundary</h3><p>Automation supplies evidence. Reviewers still evaluate intent, risk, and tradeoffs.</p></div>
+      </div>
+    </section>
+    <section class="demo">
+      <h2>A pipeline you can explain</h2>
+      <div class="cols-60-40">
+        <pre><code>pipeline:
+  name: verify-change
+  steps:
+    - name: install
+      run: pip install -r requirements.txt
+    - name: test
+      run: pytest --maxfail=1
+    - name: lint
+      run: ruff check .</code></pre>
+        <div><h3>Predict before running</h3><p>What happens if a test fails?</p><p>Which step should never run after that failure?</p><p class="small muted">Illustrative YAML, not a vendor-specific pipeline schema.</p></div>
+      </div>
+    </section>
+    <section class="discussion">
+      <h2>Would you merge this change?</h2>
+      <p>The pipeline is green. The change disables a slow integration test.</p>
+      <ol><li>What evidence is missing?</li><li>Who takes on the risk?</li><li>What would make the change safe enough to merge?</li></ol>
+      <blockquote><p>Take 30 seconds to think. Then compare your reasoning with a partner.</p></blockquote>
+    </section>
+    <section class="discussion-answer">
+      <h2>A green build is not the whole story</h2>
+      <ul><li>Check why the test is slow and what behavior it protects.</li><li>Replace lost coverage or make the risk explicit and time-bounded.</li><li>Agree on an owner and a follow-up before removing the safety net.</li></ul>
+      <div class="gfm-alert gfm-tip"><div class="gfm-alert-title">Teaching tip</div><p>Resolve the reasoning, not just the answer. Different contexts can justify different decisions.</p></div>
+    </section>
+    <section>
+      <p class="eyebrow">Reference / Quiet, readable detail</p>
+      <h2>Choose the right feedback loop</h2>
+      <table><caption class="small">Typical checks, ordered from narrow to broad</caption><thead><tr><th scope="col">Check</th><th scope="col">Question it answers</th><th scope="col">When to run</th></tr></thead><tbody><tr><th scope="row">Unit test</th><td>Does this small piece behave correctly?</td><td>Every change</td></tr><tr><th scope="row">Integration test</th><td>Do the real components work together?</td><td>Before merge</td></tr><tr><th scope="row">End-to-end test</th><td>Can a user complete a critical journey?</td><td>Selected workflows</td></tr></tbody></table>
+      <div class="gfm-alert gfm-warning"><div class="gfm-alert-title">Watch the boundary</div><p>More tests do not automatically mean more confidence. Reliability and relevance matter.</p></div>
+    </section>
+    <section class="chat-check"><h2>Which check gives the fastest feedback?</h2><p>A. A unit test &nbsp; B. A full deployment &nbsp; C. A manual acceptance review</p><blockquote><p>Type A, B, or C in chat. You may also keep a private answer or pass.</p></blockquote></section>
+    <section class="chat-check-answer"><h2>Start with the narrowest useful check</h2><p><strong>A. A unit test</strong> usually gives the quickest signal for a small behavior.</p><p>It complements integration testing; it does not replace it.</p></section>
+    <section class="chat-waterfall"><h2>Where does feedback arrive too late?</h2><p>Draft one example from your own workflow. Do not send it yet.</p><blockquote><p>On the countdown: 3, 2, 1, send.</p></blockquote></section>
+    <section class="chat-waterfall-answer"><h2>Look for the cost of waiting</h2><ul><li>A defect discovered after release.</li><li>A review blocked by missing context.</li><li>An environment mismatch found at deployment time.</li></ul></section>
+    <section class="lab"><h2>Your turn: protect the main branch</h2><ol><li>Add one useful automated test.</li><li>Run it in your pull-request pipeline.</li><li>Require that check before merging.</li></ol><p class="small muted">Checkpoint: a failing test blocks a merge.</p></section>
+    <section class="kahoot"><h2>Pause. Retrieve. Explain.</h2><p>Close your notes. Explain the difference between a passing check and a safe change.</p></section>
+    <section class="concept"><h2>Vocabulary worth keeping</h2><div class="term-grid"><div class="term-card"><span class="tag">Input</span><h3>Change</h3><p>A small, reviewable unit of intent.</p></div><div class="term-card"><span class="tag">Evidence</span><h3>Check</h3><p>A repeatable signal about behavior.</p></div><div class="term-card"><span class="tag">Decision</span><h3>Merge</h3><p>A deliberate acceptance of risk.</p></div></div></section>
+    <section>
+      <h2>Callouts without the noise</h2>
+      <div class="gfm-alert gfm-note"><div class="gfm-alert-title">Note</div><p>Speaker notes remain instructor-only in the normal deck.</p></div>
+      <div class="gfm-alert gfm-important"><div class="gfm-alert-title">Important</div><p>Keep a single main idea on each slide.</p></div>
+      <div class="gfm-alert gfm-caution"><div class="gfm-alert-title">Caution</div><p>Never include real credentials in a demo.</p></div>
+      <span class="industry-badge">Real-world scenario</span>
+      <span class="skip-badge">Skip</span>
+      <span class="reference-badge">Reference only</span>
+    </section>
+    <section>
+      <section><h2>Vertical stacks still work</h2><p>Press the down arrow for supporting detail, or right to continue.</p></section>
+      <section class="divider"><h1>A deeper explanation</h1><p>The theme does not replace Reveal's navigation or layout engine.</p></section>
+    </section>
+    <section class="title-slide" data-state="title">
+      <div class="t-band"></div><div class="t-main">Existing decks.<br>A fresh coat of blue.</div>
+      <div class="t-sub">Compatibility with t-main, t-sub, t-meta, and t-band.</div>
+      <div class="t-meta">No content rewrite required.</div>
+    </section>
+    <section class="lead">
+      <p class="eyebrow">Make it yours</p><h1>Same identity.<br>Three expressions.</h1>
+      <p><a href="?theme=classic">View the Marp-inspired classic</a><br><a href="?theme=polished">View the polished edition</a><br><a href="?theme=polished-gradients">View polished with activity gradients</a></p>
+      <p class="small muted">Arrow keys to navigate / Esc for overview / S for speaker notes</p>
+    </section>
+  </div></div>
+  <script src="../node_modules/reveal.js/dist/reveal.js"></script>
+  <script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
+  <script>
+    const requestedTheme = new URLSearchParams(location.search).get('theme');
+    const theme = ['classic', 'polished', 'polished-gradients'].includes(requestedTheme)
+      ? requestedTheme : 'polished';
+    document.getElementById('polished-theme').disabled = theme === 'classic';
+    document.getElementById('gradient-theme').disabled = theme !== 'polished-gradients';
+    const comparisonLinks = document.querySelectorAll('.theme-picker a');
+    for (const link of comparisonLinks) {
+      if (link.dataset.theme === theme) link.setAttribute('aria-current', 'page');
+    }
+    function syncComparisonLinks() {
+      for (const link of comparisonLinks) link.hash = '#' + Reveal.getSlidePath();
+    }
+    // Reveal replaces browser history without firing a native hashchange.
+    Reveal.on('ready', syncComparisonLinks);
+    Reveal.on('slidechanged', syncComparisonLinks);
+    Reveal.initialize({
+      width: 1280, height: 720, margin: 0, center: false, hash: true,
+      controls: true, progress: true, slideNumber: 'c/t',
+      transition: matchMedia('(prefers-reduced-motion: reduce)').matches ? 'none' : 'fade',
+      pdfSeparateFragments: false, plugins: [RevealNotes]
+    });
+  </script>
+</body>
+</html>
