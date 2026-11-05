@@ -71,5 +71,19 @@ Computed styles confirm that Classic retains its original short gradients,
 Polished retains its radial canvas, and the third variant has wider semantic
 activity gradients while keeping Space Grotesk headings.
 
-Demo, discussion, and answer slides were visually inspected. The original
-`blue-theme.css` and `blue-polished.css` files are unchanged.
+Demo, discussion, and answer slides were visually inspected. The third
+variant leaves the original activity designs intact.
+
+## Kavin School Branding
+
+Six Node tests pass, including SVG asset references, accessible logo markup,
+and SVG HTTP content types. The original logo assets are used unchanged.
+
+The gradient showcase has one logo on each of its 20 leaf slides and none on
+vertical-stack wrappers. Section geometry checks report no scroll overflow.
+Light slides resolve `logo.svg`; dark title and divider classes resolve
+`logo-white.svg`. Screenshots confirm footer placement without replacing the
+activity badge or title decoration. At 390 x 844, document width remains 390px.
+
+A 20-page PDF was generated with background graphics enabled; all 20 logo
+elements remain in their slide-local positions with the correct asset choice.

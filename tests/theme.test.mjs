@@ -16,7 +16,7 @@ test('classic theme preserves the three Marp brand colors', async () => {
   }
 });
 
-test('all bundled font URLs resolve and include redistribution licenses', async () => {
+test('all bundled asset URLs resolve and fonts include redistribution licenses', async () => {
   const css = await read('blue-theme.css');
   for (const [, path] of css.matchAll(/url\("([^"]+)"\)/g)) {
     await access(resolve(root, path));
@@ -24,6 +24,23 @@ test('all bundled font URLs resolve and include redistribution licenses', async 
   for (const font of ['Manrope', 'SpaceGrotesk']) {
     assert.match(await read(`assets/fonts/${font}-OFL.txt`), /SIL OPEN FONT LICENSE/);
   }
+});
+
+test('branding uses the supplied SVGs with accessible slide-local markup', async () => {
+  const css = await read('blue-theme.css');
+  const html = await read('examples/index.html');
+  for (const path of ['logo.svg', 'logo-white.svg']) {
+    const svg = await read(path);
+    assert.match(svg, /viewBox="0 0 200 50"/);
+    assert.match(svg, />Kavin<\/text>/);
+    assert.match(svg, />School<\/text>/);
+    assert.doesNotMatch(svg, /<script|<foreignObject|href=/i);
+    assert.ok(css.includes(`url("${path}")`), path);
+  }
+  assert.match(css, /\.reveal section:is\(\.lead, \.divider, \.title-slide\) \.slide-logo/);
+  assert.match(html, /logo\.setAttribute\('role', 'img'\)/);
+  assert.match(html, /logo\.setAttribute\('aria-label', 'Kavin School'\)/);
+  assert.match(html, /slide\.querySelector\(':scope > section'\)/, 'stack wrappers must not get duplicate logos');
 });
 
 test('sample exercises every activity and both title formats', async () => {
@@ -64,10 +81,11 @@ test('preview server serves theme assets but not hidden or outside files', async
   try {
     const [output] = await once(child.stdout, 'data');
     const base = output.toString().match(/http:\/\/localhost:\d+/)[0].replace('localhost', '127.0.0.1');
-    for (const path of ['/', '/blue-theme.css', '/blue-polished.css', '/blue-polished-gradients.css', '/assets/fonts/Manrope.ttf']) {
+    for (const path of ['/', '/blue-theme.css', '/blue-polished.css', '/blue-polished-gradients.css', '/assets/fonts/Manrope.ttf', '/logo.svg', '/logo-white.svg']) {
       assert.equal((await fetch(base + path)).status, 200, path);
     }
     assert.match((await fetch(base + '/blue-theme.css')).headers.get('content-type'), /text\/css/);
+    assert.match((await fetch(base + '/logo.svg')).headers.get('content-type'), /image\/svg\+xml/);
     for (const path of ['/.git/config', '/%2e%2e%2fmarp-themes/blue-theme.css', '/missing']) {
       assert.ok([403, 404].includes((await fetch(base + path)).status), path);
     }

@@ -13,6 +13,8 @@ mkdir -p devops-demos/slides/themes/blue
 cp ../revealjs-theme/blue-theme.css ../revealjs-theme/blue-polished.css \
   devops-demos/slides/themes/blue/
 cp -R ../revealjs-theme/assets devops-demos/slides/themes/blue/
+cp ../revealjs-theme/logo.svg ../revealjs-theme/logo-white.svg \
+  devops-demos/slides/themes/blue/
 ```
 
 In `day1.html`, `day2.html`, and `day3.html`, replace the existing
@@ -33,6 +35,11 @@ add this link after the two theme links:
 
 This adds semantic activity gradients while retaining polished content slides.
 Omit the third link to keep the original Polished appearance.
+
+For branding, add `<span class="slide-logo" role="img"
+aria-label="Kavin School"></span>` inside each leaf slide. The logo switches
+to white-and-teal automatically on `title-slide`, `lead`, and `divider`.
+Do not put it on a parent section that holds vertical slides.
 
 Keep Reveal's `reset.css`, `reveal.css`, JavaScript, notes plugin, and
 initialization. The current `1280 x 720`, `center: false`, `margin: 0`

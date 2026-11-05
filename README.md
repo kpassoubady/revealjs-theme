@@ -36,8 +36,9 @@ vertical stacks. Reduced-motion preferences disable transitions.
 
 ## Use In A Deck
 
-Copy the CSS files and `assets/fonts/` into a theme directory, preserving their
-relative paths. No Sass compilation or theme plugin is required.
+Copy the CSS files, `logo.svg`, `logo-white.svg`, and `assets/fonts/` into a
+theme directory, preserving their relative paths. No Sass compilation or
+theme plugin is required.
 
 ```html
 <link rel="stylesheet" href="reveal/dist/reset.css">
@@ -51,7 +52,8 @@ relative paths. No Sass compilation or theme plugin is required.
 
 Classic uses only `blue-theme.css`; Polished uses the first two theme files;
 Polished + Gradients uses all three, in the order shown.
-The original Classic and Polished stylesheets are unchanged.
+The branding helper is shared by all three variants; activity designs remain
+independent of the logo.
 
 Do not load another Reveal theme (such as `black.css`) alongside this theme.
 
@@ -95,10 +97,54 @@ Decks with different aspect ratios may need spacing adjustments.
 | `gfm-alert`, `gfm-note/tip/important/warning/caution` | Explicit HTML callouts |
 | `industry-badge`, `skip-badge`, `reference-badge` | Delivery signals |
 | `eyebrow`, `small`, `muted`, `accent` | Text helpers |
+| `slide-logo` | Automatic light/dark Kavin School branding |
 
 Callouts need explicit HTML; this CSS does not parse GitHub alert Markdown.
 Use the showcase as the markup reference. Semantic headings, meaningful image
 alt text, table headers, and sensible reading order remain the author's job.
+
+## Kavin School Branding
+
+The supplied SVGs work unchanged in Reveal.js. Add this element inside each
+slide that should carry the logo (not on a vertical-stack wrapper):
+
+```html
+<span class="slide-logo" role="img" aria-label="Kavin School"></span>
+```
+
+It sits in the bottom-right footer area, away from activity badges and slide
+numbers. Content and activity slides use `logo.svg`; `lead`, `divider`, and
+`title-slide` automatically use the white-and-teal `logo-white.svg`.
+It works with Classic, Polished, and Polished + Gradients. The sample adds the
+element to every leaf slide before initializing Reveal; your template can
+emit the same markup directly, with no logo JavaScript required.
+
+The SVG paths resolve relative to `blue-theme.css`, not the deck HTML.
+Keep both SVGs beside that stylesheet when copying or hosting the theme.
+No font conversion or raster replacement is needed. The optional `logo.png`
+is not used by the theme.
+
+```css
+/* Optional deck-level adjustments, in canvas pixels. */
+.reveal {
+  --slide-logo-width: 160px;
+  --slide-logo-right: 64px;
+  --slide-logo-bottom: 16px;
+}
+```
+
+Omit the element on an unbranded slide. For a custom dark background on a
+regular slide, explicitly set its logo:
+
+```html
+<span class="slide-logo" role="img" aria-label="Kavin School"
+      style="background-image: url('theme/logo-white.svg')"></span>
+```
+
+That inline URL is relative to the deck HTML. The original Marp-style
+`<img class="logo" src="theme/logo.svg" alt="Kavin School">` helper also
+remains available if you prefer choosing the asset manually.
+For PDF export, keep background graphics enabled.
 
 ## Distribution
 

@@ -134,6 +134,15 @@
       ? requestedTheme : 'polished';
     document.getElementById('polished-theme').disabled = theme === 'classic';
     document.getElementById('gradient-theme').disabled = theme !== 'polished-gradients';
+    // A template can emit this same element directly; skip vertical-stack wrappers.
+    for (const slide of document.querySelectorAll('.slides section')) {
+      if (slide.querySelector(':scope > section')) continue;
+      const logo = document.createElement('span');
+      logo.className = 'slide-logo';
+      logo.setAttribute('role', 'img');
+      logo.setAttribute('aria-label', 'Kavin School');
+      slide.append(logo);
+    }
     const comparisonLinks = document.querySelectorAll('.theme-picker a');
     for (const link of comparisonLinks) {
       if (link.dataset.theme === theme) link.setAttribute('aria-current', 'page');

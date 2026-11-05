@@ -9,6 +9,8 @@ Reusable plain-CSS themes for Reveal.js 5, adapted from the instructor's
 - `blue-polished-gradients.css`: optional third layer restoring stronger
   semantic gradients for activities without changing the first two variants.
 - `assets/fonts/`: locally hosted variable fonts and SIL OFL licenses.
+- `logo.svg`, `logo-white.svg`: supplied Kavin School logos; the shared
+  `slide-logo` helper chooses the variant from the slide class.
 - `examples/index.html`: offline-capable showcase, including vertical slides.
 - `tests/`: Node test runner checks; `scripts/serve.mjs`: loopback preview server.
 - `docs/`: adoption guidance and research references.

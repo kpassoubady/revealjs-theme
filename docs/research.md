@@ -47,4 +47,5 @@ subtle circular decoration, and quieter content-slide rules.
 No build pipeline, icon dependency, external font API, theme JavaScript, or
 content-conversion layer. Existing inline SVG colors are not rewritten:
 those diagrams are course content and should be reviewed separately.
-No instructor logo is copied automatically.
+The Kavin School SVGs were subsequently supplied by the instructor. Branding
+is opt-in per slide and uses the original blue and white-and-teal assets.

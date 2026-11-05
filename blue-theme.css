@@ -111,6 +111,21 @@
 .reveal svg.diagram { display: block; width: 100%; }
 .reveal figure { margin: 0; }
 .reveal img.logo { position: absolute; right: 64px; bottom: 60px; width: 160px; }
+/* Opt-in branding stays inside each slide, including overview and PDF pages. */
+.reveal .slide-logo {
+  display: block;
+  position: absolute;
+  right: var(--slide-logo-right, 64px);
+  bottom: var(--slide-logo-bottom, 16px);
+  width: var(--slide-logo-width, 160px);
+  aspect-ratio: 4 / 1;
+  z-index: 1;
+  background: url("logo.svg") center / contain no-repeat;
+  pointer-events: none;
+}
+.reveal section:is(.lead, .divider, .title-slide) .slide-logo {
+  background-image: url("logo-white.svg");
+}
 .reveal img[alt~="center"] { display: block; margin: 0 auto; }
 .reveal img[alt~="small"] { width: 300px; }
 .reveal img[alt~="medium"] { width: 500px; }
