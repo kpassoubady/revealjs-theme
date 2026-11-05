@@ -36,7 +36,25 @@ vertical stacks. Reduced-motion preferences disable transitions.
 
 ## Use In A Deck
 
-Copy the CSS files, `logo.svg`, `logo-white.svg`, and `assets/fonts/` into a
+### Via CDN (Recommended for multi-course consistency)
+
+Link directly via jsDelivr pinned to an immutable release tag (`@v1`):
+
+```html
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1/blue-theme.css">
+<!-- Optional, recommended refinement -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1/blue-polished.css">
+<!-- Optional third variant: polished design with activity gradients -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1/blue-polished-gradients.css">
+```
+
+Always pin to a version tag (`@v1`), never to `@main`. Tagged CDN URLs are immutable, cached reliably, and serve with CORS enabled for font and logo assets.
+
+### Local Installation
+
+Alternatively, copy the CSS files, `logo.svg`, `logo-white.svg`, and `assets/fonts/` into a
 theme directory, preserving their relative paths. No Sass compilation or
 theme plugin is required.
 
