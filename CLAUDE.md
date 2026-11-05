@@ -6,6 +6,8 @@ Reusable plain-CSS themes for Reveal.js 5, adapted from the instructor's
 ## Structure
 - `blue-theme.css`: standalone classic theme, loaded after Reveal's core CSS.
 - `blue-polished.css`: optional editorial overrides, loaded after the classic theme.
+- `blue-polished-gradients.css`: optional third layer restoring stronger
+  semantic gradients for activities without changing the first two variants.
 - `assets/fonts/`: locally hosted variable fonts and SIL OFL licenses.
 - `examples/index.html`: offline-capable showcase, including vertical slides.
 - `tests/`: Node test runner checks; `scripts/serve.mjs`: loopback preview server.
@@ -21,6 +23,6 @@ Reusable plain-CSS themes for Reveal.js 5, adapted from the instructor's
 - Target 1280 x 720, `margin: 0`, `center: false`; retain Reveal's scaling.
 - Scope content rules to `.reveal`; do not style the speaker-notes window.
 - Keep classic brand tokens aligned with Marp; refinements belong in polished CSS.
-- Check classic and polished, overview, vertical slides, small viewport, and PDF.
+- Check all three variants, overview, vertical slides, small viewport, and PDF.
 - Use immutable commit hashes or new release tags for CDN consumers, never `@main`.
 - Do not publish tags or modify consuming course repositories without approval.

@@ -38,6 +38,25 @@ test('sample exercises every activity and both title formats', async () => {
   assert.doesNotMatch(html, /https?:\/\//, 'preview must not need a CDN');
 });
 
+test('third variant layers activity gradients without changing the original themes', async () => {
+  const css = await read('blue-polished-gradients.css');
+  const html = await read('examples/index.html');
+  assert.match(css, /linear-gradient\(/);
+  assert.match(css, /var\(--activity-fill\)/);
+  assert.match(css, /var\(--activity-color\)/);
+  assert.doesNotMatch(css, /:root|@font-face/, 'variant should inherit palette and typography');
+  for (const name of ['concept', 'demo', 'discussion', 'discussion-answer', 'chat-check',
+    'chat-check-answer', 'chat-waterfall', 'chat-waterfall-answer', 'lab', 'kahoot']) {
+    assert.ok(css.includes(`.${name}`), name);
+  }
+  assert.ok(html.indexOf('href="../blue-polished.css"') < html.indexOf('href="../blue-polished-gradients.css"'));
+  for (const theme of ['classic', 'polished', 'polished-gradients']) {
+    assert.ok(html.includes(`data-theme="${theme}"`), theme);
+  }
+  assert.match(html, /link\.hash = '#' \+ Reveal\.getSlidePath\(\)/, 'comparison should use the current Reveal slide');
+  assert.match(html, /Reveal\.on\('slidechanged', syncComparisonLinks\)/, 'Reveal navigation should refresh comparison links');
+});
+
 test('preview server serves theme assets but not hidden or outside files', async () => {
   const child = spawn(process.execPath, ['scripts/serve.mjs'], {
     cwd: root, env: { ...process.env, PORT: '0' }, stdio: ['ignore', 'pipe', 'pipe']
@@ -45,7 +64,7 @@ test('preview server serves theme assets but not hidden or outside files', async
   try {
     const [output] = await once(child.stdout, 'data');
     const base = output.toString().match(/http:\/\/localhost:\d+/)[0].replace('localhost', '127.0.0.1');
-    for (const path of ['/', '/blue-theme.css', '/blue-polished.css', '/assets/fonts/Manrope.ttf']) {
+    for (const path of ['/', '/blue-theme.css', '/blue-polished.css', '/blue-polished-gradients.css', '/assets/fonts/Manrope.ttf']) {
       assert.equal((await fetch(base + path)).status, 200, path);
     }
     assert.match((await fetch(base + '/blue-theme.css')).headers.get('content-type'), /text\/css/);

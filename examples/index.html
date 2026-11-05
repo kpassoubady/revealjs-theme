@@ -8,15 +8,29 @@
   <link rel="stylesheet" href="../node_modules/reveal.js/dist/reveal.css">
   <link rel="stylesheet" href="../blue-theme.css">
   <link id="polished-theme" rel="stylesheet" href="../blue-polished.css">
+  <link id="gradient-theme" rel="stylesheet" href="../blue-polished-gradients.css" disabled>
+  <style>
+    .theme-picker { position: fixed; z-index: 30; top: 10px; right: 14px; display: flex; gap: 4px; padding: 4px; border: 1px solid #d7e3ee; border-radius: 8px; background: #fffffff2; font: 600 12px/1.4 "Manrope", sans-serif; }
+    .theme-picker a { padding: 6px 9px; border-radius: 5px; color: #0d47a1; text-decoration: none; }
+    .theme-picker a[aria-current="page"] { background: #0d47a1; color: #fff; }
+    .theme-picker a:focus-visible { outline: 3px solid #007a6b; outline-offset: 2px; }
+    html.reveal-print .theme-picker { display: none; }
+    @media print { .theme-picker { display: none; } }
+  </style>
 </head>
 <body>
+  <nav class="theme-picker" aria-label="Theme comparison">
+    <a href="?theme=classic" data-theme="classic">Classic</a>
+    <a href="?theme=polished" data-theme="polished">Polished</a>
+    <a href="?theme=polished-gradients" data-theme="polished-gradients">Polished + Gradients</a>
+  </nav>
   <div class="reveal"><div class="slides">
     <section class="lead">
       <p class="eyebrow">Blue / An instructor's toolkit</p>
       <h1>Good systems.<br>Great explanations.</h1>
       <p>A familiar blue identity. A clearer teaching canvas.</p>
       <p class="small muted">Reveal.js 5 &nbsp; / &nbsp; Kangeyan Passoubady</p>
-      <aside class="notes">Use the arrow keys or swipe to explore. The classic theme is available through the link on the last slide.</aside>
+      <aside class="notes">Use the arrow keys or swipe to explore. Use the comparison links to switch among all three themes on the same slide.</aside>
     </section>
     <section>
       <p class="eyebrow">01 / Built for understanding</p>
@@ -107,17 +121,29 @@
       <div class="t-meta">No content rewrite required.</div>
     </section>
     <section class="lead">
-      <p class="eyebrow">Make it yours</p><h1>Same identity.<br>Two expressions.</h1>
-      <p><a href="?theme=classic">View the Marp-inspired classic</a><br><a href="?theme=polished">View the polished edition</a></p>
+      <p class="eyebrow">Make it yours</p><h1>Same identity.<br>Three expressions.</h1>
+      <p><a href="?theme=classic">View the Marp-inspired classic</a><br><a href="?theme=polished">View the polished edition</a><br><a href="?theme=polished-gradients">View polished with activity gradients</a></p>
       <p class="small muted">Arrow keys to navigate / Esc for overview / S for speaker notes</p>
     </section>
   </div></div>
   <script src="../node_modules/reveal.js/dist/reveal.js"></script>
   <script src="../node_modules/reveal.js/plugin/notes/notes.js"></script>
   <script>
-    if (new URLSearchParams(location.search).get('theme') === 'classic') {
-      document.getElementById('polished-theme').disabled = true;
+    const requestedTheme = new URLSearchParams(location.search).get('theme');
+    const theme = ['classic', 'polished', 'polished-gradients'].includes(requestedTheme)
+      ? requestedTheme : 'polished';
+    document.getElementById('polished-theme').disabled = theme === 'classic';
+    document.getElementById('gradient-theme').disabled = theme !== 'polished-gradients';
+    const comparisonLinks = document.querySelectorAll('.theme-picker a');
+    for (const link of comparisonLinks) {
+      if (link.dataset.theme === theme) link.setAttribute('aria-current', 'page');
     }
+    function syncComparisonLinks() {
+      for (const link of comparisonLinks) link.hash = '#' + Reveal.getSlidePath();
+    }
+    // Reveal replaces browser history without firing a native hashchange.
+    Reveal.on('ready', syncComparisonLinks);
+    Reveal.on('slidechanged', syncComparisonLinks);
     Reveal.initialize({
       width: 1280, height: 720, margin: 0, center: false, hash: true,
       controls: true, progress: true, slideNumber: 'c/t',

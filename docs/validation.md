@@ -12,6 +12,9 @@ Run `npm start`, then inspect:
 
 - Polished: `http://localhost:4173/`.
 - Classic: `http://localhost:4173/?theme=classic`.
+- Polished + Gradients: `http://localhost:4173/?theme=polished-gradients`.
+- Use the top comparison links on a demo, discussion, or answer slide;
+  the selected theme should change without losing the slide position.
 - Overview: press Esc; all slides should retain their individual backgrounds.
 - Vertical stack: navigate down from "Vertical stacks still work."
 - Notes: press S; speaker notes should open independently.
@@ -59,3 +62,14 @@ The course check was geometry-only, not a complete visual or content audit.
 Linked course media were not copied into the temporary preview. No original
 course file was modified. Speaker notes use the standard plugin; the PDF
 check did not include notes pages.
+
+## Third-Variant Comparison
+
+The Polished + Gradients addition passes five Node tests. All three variants
+were rechecked across the 20-slide showcase with no section scroll overflow.
+Computed styles confirm that Classic retains its original short gradients,
+Polished retains its radial canvas, and the third variant has wider semantic
+activity gradients while keeping Space Grotesk headings.
+
+Demo, discussion, and answer slides were visually inspected. The original
+`blue-theme.css` and `blue-polished.css` files are unchanged.

@@ -23,6 +23,17 @@ In `day1.html`, `day2.html`, and `day3.html`, replace the existing
 <link rel="stylesheet" href="themes/blue/blue-polished.css">
 ```
 
+To choose Polished + Gradients instead, also copy
+`../revealjs-theme/blue-polished-gradients.css` into the same directory and
+add this link after the two theme links:
+
+```html
+<link rel="stylesheet" href="themes/blue/blue-polished-gradients.css">
+```
+
+This adds semantic activity gradients while retaining polished content slides.
+Omit the third link to keep the original Polished appearance.
+
 Keep Reveal's `reset.css`, `reveal.css`, JavaScript, notes plugin, and
 initialization. The current `1280 x 720`, `center: false`, `margin: 0`
 configuration already matches the theme.

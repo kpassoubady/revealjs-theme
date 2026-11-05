@@ -3,12 +3,15 @@
 A reusable blue theme for Reveal.js 5, carrying the visual identity of
 [marp-themes](https://github.com/kpassoubady/marp-themes) into HTML course decks.
 
-Two expressions share one foundation:
+Three expressions share one foundation:
 
 - Classic: the original blue / deep-blue / teal palette, centered gradient
   title slides, clear heading rules, and familiar activity badges.
 - Polished (recommended): expressive Space Grotesk headings, left-aligned
   chapter openers, subtle atmospheric backgrounds, and refined cards and code.
+- Polished + Gradients: the polished design with distinct teal demo/lab,
+  purple discussion, green answer, blue poll, and amber waterfall gradients.
+  Activity heading accents and code borders follow the same semantic colors.
 
 ## Preview
 
@@ -19,17 +22,21 @@ npm ci
 npm start
 ```
 
-Open http://localhost:4173 for polished, or
-http://localhost:4173/?theme=classic for classic. The demo runs without network
+Open http://localhost:4173 for polished,
+http://localhost:4173/?theme=classic for classic, or
+http://localhost:4173/?theme=polished-gradients for the third variant.
+The comparison links at the top keep your current slide when switching,
+so demos, discussions, and answers can be compared directly.
+The demo runs without network
 access after installation, including fonts and speaker notes.
 
 Use arrow keys or swipe to navigate, Esc for overview, and S for speaker notes.
-Both themes preserve Reveal's scaling, keyboard navigation, fragments, and
+All three variants preserve Reveal's scaling, keyboard navigation, fragments, and
 vertical stacks. Reduced-motion preferences disable transitions.
 
 ## Use In A Deck
 
-Copy both CSS files and `assets/fonts/` into a theme directory, preserving their
+Copy the CSS files and `assets/fonts/` into a theme directory, preserving their
 relative paths. No Sass compilation or theme plugin is required.
 
 ```html
@@ -38,7 +45,13 @@ relative paths. No Sass compilation or theme plugin is required.
 <link rel="stylesheet" href="theme/blue-theme.css">
 <!-- Optional, recommended refinement -->
 <link rel="stylesheet" href="theme/blue-polished.css">
+<!-- Optional third variant: polished design with activity gradients -->
+<link rel="stylesheet" href="theme/blue-polished-gradients.css">
 ```
+
+Classic uses only `blue-theme.css`; Polished uses the first two theme files;
+Polished + Gradients uses all three, in the order shown.
+The original Classic and Polished stylesheets are unchanged.
 
 Do not load another Reveal theme (such as `black.css`) alongside this theme.
 
@@ -98,6 +111,7 @@ tag or full commit hash:
 ```text
 https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@<COMMIT-SHA>/blue-theme.css
 https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@<COMMIT-SHA>/blue-polished.css
+https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@<COMMIT-SHA>/blue-polished-gradients.css
 ```
 
 Relative font URLs resolve next to those stylesheets. Do not use GitHub raw
