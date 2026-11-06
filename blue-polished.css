@@ -33,3 +33,15 @@
 .reveal .t-main { font-weight: 500; letter-spacing: -0.035em; }
 .reveal .t-band { margin-left: 0; }
 .reveal-viewport:has(.slides section.present:is(.lead, .divider, .title-slide)) { background: #071f46; }
+.reveal section:is(.lead, .divider, .title-slide):is(.lab-divider, .divider-lab) {
+  background:
+    radial-gradient(ellipse at 95% 10%, rgba(0, 191, 165, 0.35) 0, transparent 55%),
+    linear-gradient(125deg, #022b24 0%, #004d40 60%, #007a6b 100%);
+  --color-text-light: #b2dfdb;
+}
+.reveal section:is(.lead, .divider, .title-slide):is(.lab-divider, .divider-lab) :is(.eyebrow, .kicker) {
+  color: #64ffda;
+}
+.reveal-viewport:has(.slides section.present:is(.lead, .divider, .title-slide):is(.lab-divider, .divider-lab)) {
+  background: #022b24;
+}

@@ -94,3 +94,14 @@ test('preview server serves theme assets but not hidden or outside files', async
     await once(child, 'exit');
   }
 });
+
+test('lab divider provides a green gradient variant for hands-on activities', async () => {
+  const classic = await read('blue-theme.css');
+  const polished = await read('blue-polished.css');
+  const html = await read('examples/index.html');
+  assert.match(classic, /\.lab-divider/);
+  assert.match(classic, /#007a6b/);
+  assert.match(polished, /\.lab-divider/);
+  assert.match(polished, /#022b24/);
+  assert.ok(html.includes('class="divider lab-divider"'));
+});

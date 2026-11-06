@@ -214,6 +214,16 @@
 .reveal .progress { color: var(--color-accent-ink); height: 3px; }
 .reveal-viewport:has(.slides section.present:is(.lead, .divider, .title-slide)) { background: #0d47a1; }
 .reveal:has(.slides section.present:is(.lead, .divider, .title-slide)) :is(.slide-number, .controls) { color: #96ffeb; }
+.reveal section:is(.lead, .divider, .title-slide):is(.lab-divider, .divider-lab) {
+  background: linear-gradient(135deg, #007a6b, #004d40);
+  --color-text-light: #b2dfdb;
+}
+.reveal section:is(.lead, .divider, .title-slide):is(.lab-divider, .divider-lab) :is(.eyebrow, .kicker) {
+  color: #64ffda;
+}
+.reveal-viewport:has(.slides section.present:is(.lead, .divider, .title-slide):is(.lab-divider, .divider-lab)) {
+  background: #004d40;
+}
 html.reveal-print .reveal .slides section:not(.stack) { padding: var(--slide-padding) !important; }
 html.reveal-print .reveal .slides section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot) { padding-top: 94px !important; }
 html.reveal-print .reveal pre code { max-height: none; overflow: visible; white-space: pre-wrap; overflow-wrap: anywhere; }
