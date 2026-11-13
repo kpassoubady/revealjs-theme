@@ -108,6 +108,10 @@
 .reveal ul.refs { list-style: none; padding-left: 0; }
 .reveal ul.refs > li { font-size: 0.7em; line-height: 1.35; margin-bottom: 8px; padding-left: 1.2em; position: relative; }
 .reveal ul.refs > li::before { content: "•"; position: absolute; left: 0; top: 0; color: var(--color-primary); font-weight: bold; }
+.reveal ul.refs.two-col { columns: 2; column-gap: 48px; }
+.reveal ul.refs.two-col > li { break-inside: avoid; }
+.reveal .source { margin-top: 18px; font-size: 0.6em; color: var(--color-text-light); }
+.reveal .source a { color: var(--color-primary-dark); }
 .reveal blockquote { box-sizing: border-box; width: 100%; margin: 24px 0; padding: 18px 24px; border-left: 5px solid var(--color-accent); border-radius: 0 8px 8px 0; background: #edf9f6; font-size: 0.9em; font-style: normal; box-shadow: none; }
 .reveal blockquote p:last-child { margin: 0; }
 .reveal :is(.small, small) { font-size: 0.75em; }

@@ -140,15 +140,19 @@ test('extended vocabulary supports recap, agenda, connect, personal icebreaker, 
   assert.match(classic, /\.reveal table\.compact/);
   assert.match(classic, /\.reveal table\.dense/);
   assert.match(classic, /\.reveal ul\.refs/);
+  assert.match(classic, /\.reveal ul\.refs\.two-col/);
+  assert.match(classic, /\.reveal \.source/);
   assert.match(classic, /\.reveal \.code-wide \.cols-60-40/);
   assert.ok(html.includes('class="compact full"'));
   assert.ok(html.includes('class="refs"'));
+  assert.ok(html.includes('class="refs two-col"'));
+  assert.ok(html.includes('class="source"'));
 
   // PDF print page number color rules for title/lead/divider slides
   assert.match(classic, /html\.reveal-print \.reveal \.slides \.pdf-page:has\(:is\(\.lead, \.divider, \.title-slide\)\) \.slide-number-pdf/);
 });
 
-test('documentation CDN URLs are pinned to the current package version tag without drift', async () => {
+test('documentation CDN URLs and tag references are pinned to the current package version tag without drift', async () => {
   const pkg = JSON.parse(await read('package.json'));
   const readme = await read('README.md');
   const [major, minor, patch] = pkg.version.split('.').map(Number);
@@ -168,4 +172,13 @@ test('documentation CDN URLs are pinned to the current package version tag witho
   }
 
   assert.doesNotMatch(readme, /revealjs-theme@(main|latest)/, 'README.md must never reference mutable @main or @latest');
+});
+
+test('CHANGELOG.md records current package version without drift', async () => {
+  const pkg = JSON.parse(await read('package.json'));
+  const changelog = await read('CHANGELOG.md');
+  assert.ok(
+    changelog.includes(`## [${pkg.version}]`),
+    `CHANGELOG.md must contain entry for current package version ${pkg.version}`
+  );
 });

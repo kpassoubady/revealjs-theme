@@ -39,6 +39,50 @@ function bumpVersion(currentVersion, bumpType) {
   }
 }
 
+function updateChangelog(content, version) {
+  if (content.includes(`## [${version}]`)) {
+    return content;
+  }
+
+  const today = new Date().toISOString().slice(0, 10);
+  const unreleasedRegex = /##\s*\[Unreleased\]/i;
+
+  if (!unreleasedRegex.test(content)) {
+    const firstVersionMatch = content.match(/##\s*\[[0-9]+\.[0-9]+(\.[0-9]+)?\]/);
+    if (firstVersionMatch) {
+      const idx = firstVersionMatch.index;
+      return content.slice(0, idx) +
+        `## [Unreleased]\n\n## [${version}] - ${today}\n\n` +
+        content.slice(idx);
+    }
+    return content;
+  }
+
+  const unreleasedIdx = content.search(unreleasedRegex);
+  const afterUnreleased = content.slice(unreleasedIdx);
+  const nextHeaderMatch = afterUnreleased.slice(1).match(/##\s*\[[0-9]+\.[0-9]+(\.[0-9]+)?\]/);
+
+  if (nextHeaderMatch) {
+    const unreleasedBlock = afterUnreleased.slice(0, nextHeaderMatch.index + 1);
+    const rest = afterUnreleased.slice(nextHeaderMatch.index + 1);
+    const body = unreleasedBlock.replace(unreleasedRegex, '').trim();
+
+    if (body) {
+      return content.slice(0, unreleasedIdx) +
+        `## [Unreleased]\n\n## [${version}] - ${today}\n\n${body}\n\n` +
+        rest;
+    } else {
+      return content.slice(0, unreleasedIdx) +
+        `## [Unreleased]\n\n## [${version}] - ${today}\n\n` +
+        rest;
+    }
+  }
+
+  const body = afterUnreleased.replace(unreleasedRegex, '').trim();
+  return content.slice(0, unreleasedIdx) +
+    `## [Unreleased]\n\n## [${version}] - ${today}\n\n${body}\n`;
+}
+
 async function main() {
   const args = process.argv.slice(2);
   const pkgPath = resolve(root, 'package.json');
@@ -73,17 +117,32 @@ async function main() {
   await writeFile(pkgPath, JSON.stringify(pkg, null, 2) + '\n', 'utf8');
   console.log(`✓ Updated package.json version to ${nextVersion}`);
 
-  // 2. Update README.md CDN references
+  // 2. Update README.md CDN references and tag notes
   const readmePath = resolve(root, 'README.md');
   let readme = await readFile(readmePath, 'utf8');
   readme = readme.replaceAll(
     /revealjs-theme@v[0-9]+(\.[0-9]+)*/g,
     `revealjs-theme@${nextTag}`
   );
+  readme = readme.replaceAll(
+    /tag \(`@v[0-9]+(\.[0-9]+)*`\)/g,
+    `tag (\`@${nextTag}\`)`
+  );
   await writeFile(readmePath, readme, 'utf8');
-  console.log(`✓ Updated README.md CDN URLs to ${nextTag}`);
+  console.log(`✓ Updated README.md CDN URLs and tag notes to ${nextTag}`);
 
-  // 3. Update intermediate-devops.md if reference exists
+  // 3. Update CHANGELOG.md
+  const changelogPath = resolve(root, 'CHANGELOG.md');
+  try {
+    let changelog = await readFile(changelogPath, 'utf8');
+    changelog = updateChangelog(changelog, nextVersion);
+    await writeFile(changelogPath, changelog, 'utf8');
+    console.log(`✓ Updated CHANGELOG.md for [${nextVersion}]`);
+  } catch {
+    // optional
+  }
+
+  // 4. Update intermediate-devops.md if reference exists
   const devopsDocPath = resolve(root, 'docs/intermediate-devops.md');
   try {
     let devopsDoc = await readFile(devopsDocPath, 'utf8');
@@ -94,14 +153,14 @@ async function main() {
     // optional doc
   }
 
-  // 4. Run tests to verify consistency
+  // 5. Run tests to verify consistency
   console.log('\nRunning test suite to verify release consistency...');
   execSync('npm test', { cwd: root, stdio: 'inherit' });
   console.log('✓ All tests passed!\n');
 
   if (shouldTag) {
     console.log(`Creating git commit and tag ${nextTag}...`);
-    execSync(`git add package.json README.md docs/intermediate-devops.md`, { cwd: root, stdio: 'inherit' });
+    execSync(`git add package.json README.md CHANGELOG.md docs/intermediate-devops.md`, { cwd: root, stdio: 'inherit' });
     execSync(`git commit -m "RELEASE: ${nextTag}"`, { cwd: root, stdio: 'inherit' });
     execSync(`git tag ${nextTag}`, { cwd: root, stdio: 'inherit' });
     console.log(`✓ Committed and tagged ${nextTag}.`);
@@ -109,7 +168,7 @@ async function main() {
     console.log(`  git push origin main && git push origin ${nextTag}\n`);
   } else {
     console.log(`Next steps:`);
-    console.log(` 1. Review or update CHANGELOG.md for [${nextVersion}].`);
+    console.log(` 1. Review git diff`);
     console.log(` 2. Commit: git commit -am "RELEASE: ${nextTag}"`);
     console.log(` 3. Tag:    git tag ${nextTag}`);
     console.log(` 4. Push:   git push origin main && git push origin ${nextTag}\n`);

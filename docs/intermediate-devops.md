@@ -47,7 +47,7 @@ configuration already matches the theme.
 
 The course's `.title-slide` / `.t-*`, `.cols`, `.cols-60-40`,
 `.diagram`, `.small`, and engagement class names are supported.
-As of theme v1.2, course patterns previously defined in inline styles are
+As of theme v1.3, course patterns previously defined in inline styles are
 built into the master theme:
 - Activity badge `section.recap`
 - Closing contact slide `section.connect` and `.connect-card`

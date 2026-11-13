@@ -38,19 +38,19 @@ vertical stacks. Reduced-motion preferences disable transitions.
 
 ### Via CDN (Recommended for multi-course consistency)
 
-Link directly via jsDelivr pinned to an immutable release tag (`@v1.2`):
+Link directly via jsDelivr pinned to an immutable release tag (`@v1.3`):
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.2/blue-theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.3/blue-theme.css">
 <!-- Optional, recommended refinement -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.2/blue-polished.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.3/blue-polished.css">
 <!-- Optional third variant: polished design with activity gradients -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.2/blue-polished-gradients.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.3/blue-polished-gradients.css">
 ```
 
-Always pin to a version tag (`@v1.2`), never to `@main`. Tagged CDN URLs are immutable, cached reliably, and serve with CORS enabled for font and logo assets.
+Always pin to a version tag (`@v1.3`), never to `@main`. Tagged CDN URLs are immutable, cached reliably, and serve with CORS enabled for font and logo assets.
 
 ### Local Installation
 
@@ -116,7 +116,8 @@ Decks with different aspect ratios may need spacing adjustments.
 | `title-slide`, `t-main`, `t-sub`, `t-meta`, `t-band` | Existing DevOps deck title markup (`t-sub.low` for 3-line titles) |
 | `columns2`, `cols`, `cols-60-40`, `code-wide` | Equal columns, 60/40 split, or 70/30 wide code column |
 | `table.compact`, `table.dense`, `table.full` | High-density and full-width data and schedule tables |
-| `refs` | Compact citations and references list (`ul.refs`) |
+| `refs`, `refs two-col` | Compact citations and references list, optionally in two columns (`ul.refs`) |
+| `source` | One-line source footer under a cited claim (`p.source`) |
 | `capability-grid`, `capability-card`, `boundary` | Comparisons with an optional caveat |
 | `term-grid`, `term-card`, `tag` | Vocabulary recaps |
 | `gfm-alert`, `gfm-note/tip/important/warning/caution` | Explicit HTML callouts |
@@ -212,7 +213,7 @@ This repository does not grant rights to third-party course content or logos.
 
 ## Release Process:
 ```bash
-# 1. Automatically bump version, update README CDN URLs, and run tests
+# 1. Automatically bump version, update README CDN URLs & CHANGELOG.md, and run tests
 npm run release minor
 
 # 2. Review CHANGELOG.md, commit, tag, and push

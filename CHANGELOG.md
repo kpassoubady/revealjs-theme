@@ -5,6 +5,13 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+## [1.3.0] - 2026-11-13
+
+### Added
+- **Source Citations**: Added `.source` footer line and `ul.refs.two-col` two-column list for the per-day References slide used by the citation skills.
+
 ## [1.2.0] - 2026-11-12
 
 ### Added
