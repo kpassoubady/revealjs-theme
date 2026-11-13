@@ -208,3 +208,16 @@ integration recipe, and [research notes](docs/research.md) for upstream guidance
 
 Fonts are redistributed under their included SIL Open Font License files.
 This repository does not grant rights to third-party course content or logos.
+
+
+## Release Process:
+```bash
+# 1. Automatically bump version, update README CDN URLs, and run tests
+npm run release minor
+
+# 2. Review CHANGELOG.md, commit, tag, and push
+git commit -am "RELEASE: v1.3"
+git tag v1.3
+git push origin main && git push origin v1.3  
+```
+
