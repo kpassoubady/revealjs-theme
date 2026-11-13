@@ -18,7 +18,8 @@ Reusable plain-CSS themes for Reveal.js 5, adapted from the instructor's
 ## Commands
 - `npm ci`: install pinned Reveal.js runtime for the showcase.
 - `npm start`: serve the showcase at http://localhost:4173.
-- `npm test`: check brand tokens, assets, sample coverage, and preview server.
+- `npm test`: check brand tokens, assets, sample coverage, CDN version alignment, and preview server.
+- `npm run release <major|minor|patch>`: bump version, synchronize README CDN tags, and run verification.
 
 ## Conventions
 - No CSS build step, external font services, or required theme JavaScript.
@@ -26,5 +27,6 @@ Reusable plain-CSS themes for Reveal.js 5, adapted from the instructor's
 - Scope content rules to `.reveal`; do not style the speaker-notes window.
 - Keep classic brand tokens aligned with Marp; refinements belong in polished CSS.
 - Check all three variants, overview, vertical slides, small viewport, and PDF.
-- Use immutable commit hashes or new release tags for CDN consumers, never `@main`.
+- Use immutable commit hashes or new release tags for CDN consumers, never `@main` or `@latest`.
+- Check the latest release tag dynamically with `git describe --tags --abbrev=0` or `package.json`; do not hardcode transient tag numbers in this document.
 - Do not publish tags or modify consuming course repositories without approval.

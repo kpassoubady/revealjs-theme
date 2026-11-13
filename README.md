@@ -38,19 +38,19 @@ vertical stacks. Reduced-motion preferences disable transitions.
 
 ### Via CDN (Recommended for multi-course consistency)
 
-Link directly via jsDelivr pinned to an immutable release tag (`@v1`):
+Link directly via jsDelivr pinned to an immutable release tag (`@v1.2`):
 
 ```html
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reset.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5.2.1/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1/blue-theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.2/blue-theme.css">
 <!-- Optional, recommended refinement -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1/blue-polished.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.2/blue-polished.css">
 <!-- Optional third variant: polished design with activity gradients -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1/blue-polished-gradients.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.2/blue-polished-gradients.css">
 ```
 
-Always pin to a version tag (`@v1`), never to `@main`. Tagged CDN URLs are immutable, cached reliably, and serve with CORS enabled for font and logo assets.
+Always pin to a version tag (`@v1.2`), never to `@main`. Tagged CDN URLs are immutable, cached reliably, and serve with CORS enabled for font and logo assets.
 
 ### Local Installation
 
@@ -104,12 +104,19 @@ Decks with different aspect ratios may need spacing adjustments.
 | Classes | Purpose |
 | --- | --- |
 | `lead`, `divider` | Title and chapter slides |
-| `concept`, `demo`, `lab`, `kahoot` | Instruction, demonstrations, practice, retrieval |
+| `concept`, `demo`, `lab`, `kahoot`, `recap` | Instruction, demonstrations, practice, retrieval, and recaps |
 | `discussion`, `discussion-answer` | Discussion and resolution |
 | `chat-check`, `chat-check-answer` | Quick poll and answer |
 | `chat-waterfall`, `chat-waterfall-answer` | Simultaneous chat and key points |
-| `title-slide`, `t-main`, `t-sub`, `t-meta`, `t-band` | Existing DevOps deck title markup |
-| `columns2`, `cols`, `cols-60-40` | Equal or asymmetric columns |
+| `connect`, `connect-card`, `connect-btn` | Instructor contact and LinkedIn connect slide |
+| `personal-grid`, `personal-card`, `personal-number` | Personal icebreaker 3-card prompt |
+| `agenda-grid`, `agenda-col`, `agenda-badge` | Interactive course agenda with AM/PM sessions and badges |
+| `summary-pillars-grid`, `course-journey-grid` | Module summary pillars and 3-day course journey capstone |
+| `summary-next-banner`, `course-capstone-banner` | Next-day preview and capstone outcome banners |
+| `title-slide`, `t-main`, `t-sub`, `t-meta`, `t-band` | Existing DevOps deck title markup (`t-sub.low` for 3-line titles) |
+| `columns2`, `cols`, `cols-60-40`, `code-wide` | Equal columns, 60/40 split, or 70/30 wide code column |
+| `table.compact`, `table.dense`, `table.full` | High-density and full-width data and schedule tables |
+| `refs` | Compact citations and references list (`ul.refs`) |
 | `capability-grid`, `capability-card`, `boundary` | Comparisons with an optional caveat |
 | `term-grid`, `term-card`, `tag` | Vocabulary recaps |
 | `gfm-alert`, `gfm-note/tip/important/warning/caution` | Explicit HTML callouts |
@@ -196,8 +203,8 @@ Tests cover palette fidelity, bundled fonts/licenses, slide vocabulary,
 offline sample references, and preview server path restrictions. Browser
 checks are described in [docs/validation.md](docs/validation.md).
 
-See [DevOps adoption](docs/intermediate-devops.md) for a non-destructive
-integration recipe and [research notes](docs/research.md) for upstream guidance.
+See [Changelog](CHANGELOG.md) for version history, [DevOps adoption](docs/intermediate-devops.md) for a non-destructive
+integration recipe, and [research notes](docs/research.md) for upstream guidance.
 
 Fonts are redistributed under their included SIL Open Font License files.
 This repository does not grant rights to third-party course content or logos.

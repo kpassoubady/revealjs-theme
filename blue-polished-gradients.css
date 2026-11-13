@@ -3,7 +3,7 @@
  * Keep the polished canvas; restore a stronger color identity for activities.
  * Activity colors and labels are inherited from the classic foundation.
  */
-.reveal .slides section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot) {
+.reveal .slides section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot, .recap) {
   background: linear-gradient(
     110deg,
     var(--activity-fill) 0%,
@@ -11,9 +11,9 @@
     var(--color-bg) 82%
   );
 }
-.reveal section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot) > :is(h1, h2):first-of-type::after {
+.reveal section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot, .recap) > :is(h1, h2):first-of-type::after {
   background: var(--activity-color);
 }
-.reveal section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot) pre {
+.reveal section:is(.concept, .demo, .discussion, .discussion-answer, .chat-check, .chat-check-answer, .chat-waterfall, .chat-waterfall-answer, .lab, .kahoot, .recap) pre {
   border-top-color: var(--activity-color);
 }

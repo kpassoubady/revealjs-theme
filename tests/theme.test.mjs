@@ -47,7 +47,7 @@ test('sample exercises every activity and both title formats', async () => {
   const html = await read('examples/index.html');
   for (const name of ['lead', 'divider', 'title-slide', 'concept', 'demo', 'discussion',
     'discussion-answer', 'chat-check', 'chat-check-answer', 'chat-waterfall',
-    'chat-waterfall-answer', 'lab', 'kahoot']) {
+    'chat-waterfall-answer', 'lab', 'kahoot', 'recap']) {
     assert.ok(html.includes(`class="${name}"`), name);
   }
   assert.match(html, /prefers-reduced-motion/);
@@ -63,7 +63,7 @@ test('third variant layers activity gradients without changing the original them
   assert.match(css, /var\(--activity-color\)/);
   assert.doesNotMatch(css, /:root|@font-face/, 'variant should inherit palette and typography');
   for (const name of ['concept', 'demo', 'discussion', 'discussion-answer', 'chat-check',
-    'chat-check-answer', 'chat-waterfall', 'chat-waterfall-answer', 'lab', 'kahoot']) {
+    'chat-check-answer', 'chat-waterfall', 'chat-waterfall-answer', 'lab', 'kahoot', 'recap']) {
     assert.ok(css.includes(`.${name}`), name);
   }
   assert.ok(html.indexOf('href="../blue-polished.css"') < html.indexOf('href="../blue-polished-gradients.css"'));
@@ -104,4 +104,68 @@ test('lab divider provides a green gradient variant for hands-on activities', as
   assert.match(polished, /\.lab-divider/);
   assert.match(polished, /#022b24/);
   assert.ok(html.includes('class="divider lab-divider"'));
+});
+
+test('extended vocabulary supports recap, agenda, connect, personal icebreaker, summary pillars, and print styles', async () => {
+  const classic = await read('blue-theme.css');
+  const polished = await read('blue-polished.css');
+  const html = await read('examples/index.html');
+
+  // Recap activity
+  assert.match(classic, /\.reveal section\.recap/);
+  assert.match(classic, /--activity-label: "RECAP"/);
+
+  // Connect slide
+  assert.match(classic, /\.reveal \.slides section\.connect/);
+  assert.match(classic, /\.reveal \.connect-card/);
+  assert.match(classic, /\.reveal \.connect-btn/);
+  assert.match(polished, /\.reveal \.slides section\.connect/);
+  assert.ok(html.includes('class="connect"'));
+
+  // Interactive agenda & personal icebreaker
+  assert.match(classic, /\.reveal \.agenda-grid/);
+  assert.match(classic, /\.reveal \.agenda-badge\.lecture/);
+  assert.match(classic, /\.reveal \.agenda-badge\.lab/);
+  assert.match(classic, /\.reveal \.personal-grid/);
+  assert.match(classic, /\.reveal \.personal-card/);
+  assert.ok(html.includes('class="agenda-grid"'));
+  assert.ok(html.includes('class="personal-grid"'));
+
+  // Summary pillars & journey grids
+  assert.match(classic, /\.reveal :is\(\.summary-pillars-grid, \.course-journey-grid\)/);
+  assert.match(classic, /\.reveal :is\(\.summary-next-banner, \.course-capstone-banner\)/);
+  assert.ok(html.includes('class="summary-pillars-grid"'));
+
+  // Utility tables and refs list
+  assert.match(classic, /\.reveal table\.compact/);
+  assert.match(classic, /\.reveal table\.dense/);
+  assert.match(classic, /\.reveal ul\.refs/);
+  assert.match(classic, /\.reveal \.code-wide \.cols-60-40/);
+  assert.ok(html.includes('class="compact full"'));
+  assert.ok(html.includes('class="refs"'));
+
+  // PDF print page number color rules for title/lead/divider slides
+  assert.match(classic, /html\.reveal-print \.reveal \.slides \.pdf-page:has\(:is\(\.lead, \.divider, \.title-slide\)\) \.slide-number-pdf/);
+});
+
+test('documentation CDN URLs are pinned to the current package version tag without drift', async () => {
+  const pkg = JSON.parse(await read('package.json'));
+  const readme = await read('README.md');
+  const [major, minor, patch] = pkg.version.split('.').map(Number);
+  const expectedTag = patch === 0
+    ? (minor === 0 ? `v${major}` : `v${major}.${minor}`)
+    : `v${major}.${minor}.${patch}`;
+
+  const matches = [...readme.matchAll(/revealjs-theme@(v[0-9]+(?:\.[0-9]+)*)/g)];
+  assert.ok(matches.length > 0, 'README.md must contain versioned CDN links');
+
+  for (const [fullMatch, tag] of matches) {
+    assert.equal(
+      tag,
+      expectedTag,
+      `CDN reference "${fullMatch}" in README.md drifted from package.json version ${pkg.version} (${expectedTag})`
+    );
+  }
+
+  assert.doesNotMatch(readme, /revealjs-theme@(main|latest)/, 'README.md must never reference mutable @main or @latest');
 });

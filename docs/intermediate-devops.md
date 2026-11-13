@@ -47,6 +47,19 @@ configuration already matches the theme.
 
 The course's `.title-slide` / `.t-*`, `.cols`, `.cols-60-40`,
 `.diagram`, `.small`, and engagement class names are supported.
+As of theme v1.2, course patterns previously defined in inline styles are
+built into the master theme:
+- Activity badge `section.recap`
+- Closing contact slide `section.connect` and `.connect-card`
+- Two-column interactive agenda `.agenda-grid`
+- Personal icebreaker 3-card prompt `.personal-grid`
+- Module summary pillars `.summary-pillars-grid` and journey cards `.course-journey-grid`
+- Milestone and preview banners `.summary-next-banner` and `.course-capstone-banner`
+- High-density table modifiers `table.compact`, `table.dense`, `table.full`
+- Compact citation lists `ul.refs`
+- Wide code column `.code-wide .cols-60-40`
+- PDF print slide number colors on title, lead, and divider pages
+
 Remove old `data-background-color="#0B1F3A"` from title slides to avoid
 navy gutters competing with the new title background.
 
