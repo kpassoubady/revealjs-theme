@@ -7,6 +7,11 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+## [1.4.0] - 2026-11-14
+
+### Added
+- **Interactive Embed Styles**: Added `interactive-embed.css` (`.interactive-card`, `.interactive-thumb`, `.interactive-caption`, `.interactive-title`), a shared thumbnail style for archify interactive-diagram links. Paste into a `<style>` block in `<head>`; also works in Marp decks.
+
 ## [1.3.0] - 2026-11-13
 
 ### Added

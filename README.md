@@ -38,19 +38,19 @@ vertical stacks. Reduced-motion preferences disable transitions.
 
 ### Via CDN (Recommended for multi-course consistency)
 
-Link directly via jsDelivr pinned to an immutable release tag (`@v1.3`):
+Link directly via jsDelivr pinned to an immutable release tag (`@v1.4`):
 
 ```html
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reset.css">
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/reveal.js@5/dist/reveal.css">
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.3/blue-theme.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.4/blue-theme.css">
 <!-- Optional, recommended refinement -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.3/blue-polished.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.4/blue-polished.css">
 <!-- Optional third variant: polished design with activity gradients -->
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.3/blue-polished-gradients.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/kpassoubady/revealjs-theme@v1.4/blue-polished-gradients.css">
 ```
 
-Always pin to a version tag (`@v1.3`), never to `@main`. Tagged CDN URLs are immutable, cached reliably, and serve with CORS enabled for font and logo assets.
+Always pin to a version tag (`@v1.4`), never to `@main`. Tagged CDN URLs are immutable, cached reliably, and serve with CORS enabled for font and logo assets.
 
 ### Local Installation
 
